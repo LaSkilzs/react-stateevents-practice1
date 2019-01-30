@@ -17,14 +17,33 @@ class DogCard extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <h2>{this.props.dog.name}</h2>
-        <img alt="" src={this.props.dog.img} />
-        <button onClick={this.handleSpeak}>Bark</button>
-        {this.state.showSpeak ? <span>{this.state.speak}</span> : null}
-      </div>
-    );
+    const { handleFavorites, removeFavorites, parent } = this.props;
+
+    if (parent === "dogs") {
+      return (
+        <div>
+          <h2>{this.props.dog.name}</h2>
+          <img alt="" src={this.props.dog.img} />
+          <button onClick={this.handleSpeak}>Bark</button>
+          <button onClick={() => handleFavorites(this.props.dog)}>
+            favorite/unfavorite
+          </button>
+          {this.state.showSpeak ? <span>{this.state.speak}</span> : null}
+        </div>
+      );
+    } else if (parent === "favs") {
+      return (
+        <div>
+          <h2>{this.props.dog.name}</h2>
+          <img alt="" src={this.props.dog.img} />
+          <button onClick={this.handleSpeak}>Bark</button>
+          <button onClick={() => removeFavorites(this.props.dog)}>
+            favorite/unfavorite
+          </button>
+          {this.state.showSpeak ? <span>{this.state.speak}</span> : null}
+        </div>
+      );
+    }
   }
 }
 

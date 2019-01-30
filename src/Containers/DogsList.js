@@ -2,13 +2,22 @@ import React, { Component } from "react";
 import DogCard from "../Components/DogCard";
 
 class DogList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      parent: "dogs"
+    };
+  }
   render() {
-    const dog = this.props.dogs.map(dog => dog);
-
     return (
       <div className="dogContainer">
         {this.props.dogs.map(dog => (
-          <DogCard key={dog.id} dog={dog} />
+          <DogCard
+            key={dog.id}
+            dog={dog}
+            handleFavorites={this.props.handleFavorites}
+            parent={this.state.parent}
+          />
         ))}
       </div>
     );
